@@ -1,0 +1,5 @@
+#IntelliJ IDEA
+.idea/
+
+#Activator
+activator-sbt-*.sbt

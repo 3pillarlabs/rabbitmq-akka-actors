@@ -3,3 +3,6 @@
 
 #Activator
 activator-sbt-*.sbt
+
+#sbt specific files
+.sbtserver

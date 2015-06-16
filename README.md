@@ -1,6 +1,6 @@
 # rabbitmq-akka-actors
 
-Template which exposes the building blocks for a distributed system in which components communicate via a message broker (rabbitmq) and process messages using akka actors.
+Typesafe's Activator template which exposes the building blocks for a distributed system in which components communicate via a message broker (rabbitmq) and process messages using akka actors.
 
 The template should be useful in building systems for batch processing that are designed around a workflow where information has to be passed around all the nodes so that each can augment it with specifics.
 

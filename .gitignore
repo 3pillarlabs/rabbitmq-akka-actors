@@ -3,6 +3,10 @@
 
 #Activator
 activator-sbt-*.sbt
+RUNNING_PID
+project/project/
+project/target/
+target/
 
 #sbt specific files
 .sbtserver

@@ -2,7 +2,7 @@ name := "rabbitmq-akka-actors"
 
 version := "1.0"
 
-organization := "threepillarglobal.atg"
+organization := "3pillarglobal.com"
 
 scalaVersion := "2.11.6"
 
@@ -16,7 +16,9 @@ scalacOptions ++= Seq("-feature", "-unchecked", "-deprecation", "-encoding", "ut
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.akka"          %%  "akka-actor"               % "2.3.11"
+    "com.typesafe.akka"          %%   "akka-actor"                      % "2.3.11",
+    "com.typesafe.akka"          %    "akka-stream-experimental_2.11"   % "1.0-RC3",
+    "org.easyrules"              %    "easyrules-core"                  % "2.0.0"
   )
 }
 

@@ -13,7 +13,7 @@ import com.github.sstone.amqp.Amqp.{Delivery, Ack}
 
 object ProcessingApp extends App {
 
-  implicit val system = ActorSystem("mySystem")
+  implicit val system = ActorSystem("aSys")
   implicit val materializer = ActorMaterializer()
 
   val producer = system.actorOf(Props[RabbitQueueSource])

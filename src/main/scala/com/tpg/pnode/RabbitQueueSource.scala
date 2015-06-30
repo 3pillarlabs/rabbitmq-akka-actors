@@ -5,11 +5,12 @@ import akka.stream.actor.{ActorPublisherMessage, ActorPublisher}
 
 import scala.reflect.ClassTag
 
+case class RabbitMsg(val m: String)
 
-class RabbitQueueSource extends Actor with ActorPublisher[String] {
+class RabbitQueueSource extends Actor with ActorPublisher[RabbitMsg] {
   import ActorPublisherMessage._
 
-  var rabbitMsgQueue:List[String] = List.empty
+  var rabbitMsgQueue:List[RabbitMsg] = List.empty
 
   def receive = {
     
@@ -25,11 +26,11 @@ class RabbitQueueSource extends Actor with ActorPublisher[String] {
       }
 
 
-    case rabbitMessage:String =>
+    case rm:RabbitMsg =>
       if (totalDemand == 0)
-        rabbitMsgQueue = rabbitMsgQueue :+ rabbitMessage
+        rabbitMsgQueue = rabbitMsgQueue :+ rm
       else
-        onNext(rabbitMessage)
+        onNext(rm)
   }
 
 

@@ -17,13 +17,13 @@ object ProcessingApp extends App {
   implicit val materializer = ActorMaterializer()
 
   val producer = system.actorOf(Props[RabbitQueueSource])
-  val pub = ActorPublisher[String](producer)
+  val pub = ActorPublisher[RabbitMsg](producer)
 
   val listener = system.actorOf(Props(new Actor {
     def receive = {
       case Delivery(consumerTag, envelope, properties, body) => {
         val msg = new String(body)
-        producer ! msg
+        producer ! RabbitMsg(msg)
         sender ! Ack(envelope.getDeliveryTag)
       }
     }

@@ -3,9 +3,10 @@ package com.tpg.pnode
 import akka.actor.Actor
 import akka.stream.actor.{ActorPublisherMessage, ActorPublisher}
 
-import scala.reflect.ClassTag
 
 case class RabbitMsg(val m: String)
+
+case object GetQueueSize
 
 class RabbitQueueSource extends Actor with ActorPublisher[RabbitMsg] {
   import ActorPublisherMessage._
@@ -13,7 +14,9 @@ class RabbitQueueSource extends Actor with ActorPublisher[RabbitMsg] {
   var rabbitMsgQueue:List[RabbitMsg] = List.empty
 
   def receive = {
-    
+
+    case GetQueueSize => sender() ! rabbitMsgQueue.size
+
     case Request(demand) =>
       if (demand > rabbitMsgQueue.size){
         rabbitMsgQueue foreach (onNext)

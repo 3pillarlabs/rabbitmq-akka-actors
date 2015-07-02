@@ -1,8 +1,7 @@
-package com.tpg.pnode
+package com.tpg.pnode.rabbit
 
 import akka.actor.Actor
-import akka.stream.actor.{ActorPublisherMessage, ActorPublisher}
-
+import akka.stream.actor.{ActorPublisher, ActorPublisherMessage}
 
 case class RabbitMsg(val m: String)
 

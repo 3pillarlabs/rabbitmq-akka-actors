@@ -6,6 +6,7 @@ import akka.stream.actor.ActorPublisher
 import akka.stream.actor.ActorPublisherMessage.Request
 import akka.stream.scaladsl.{Sink, Source}
 import akka.testkit._
+import com.tpg.pnode.rabbit.{GetQueueSize, RabbitMsg, RabbitQueueSource}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 
 

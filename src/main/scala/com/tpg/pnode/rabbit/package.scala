@@ -1,7 +1,7 @@
 package com.tpg.pnode
 
 /**
- * Provides classes for connecting to a RabbitMQ server and an actor that wraps
- * a rabbit queue into a akka stream publisher
+ * Provides classes for connecting to a RabbitMQ server [[com.tpg.pnode.rabbit.RabbitConn]]
+ * and an actor [[com.tpg.pnode.rabbit.RabbitQueueSource]] that wraps a rabbit queue into an akka stream publisher
  */
 package object rabbit {}

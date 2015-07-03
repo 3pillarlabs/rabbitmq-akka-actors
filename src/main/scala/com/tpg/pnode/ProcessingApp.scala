@@ -5,7 +5,8 @@ import akka.stream.ActorMaterializer
 import akka.stream.actor.ActorPublisher
 import akka.stream.scaladsl.{Sink, Source}
 import com.github.sstone.amqp.Amqp.{Ack, Delivery}
-import com.tpg.pnode.rabbit.{RabbitMsg, RabbitQueueSource, RabbitConn}
+import com.tpg.pnode.rabbit.RabbitConn
+import com.tpg.pnode.rabbit.RabbitQueueSource.{RabbitMsg, RabbitQueueSourceActor}
 import com.tpg.pnode.rules.RuleSetBuilder
 
 import scala.language.postfixOps
@@ -16,7 +17,7 @@ object ProcessingApp extends App {
   implicit val aSys = ActorSystem("aSys")
   implicit val aMaterializer = ActorMaterializer()
 
-  val producer = aSys.actorOf(Props[RabbitQueueSource])
+  val producer = aSys.actorOf(Props[RabbitQueueSourceActor])
   val pub = ActorPublisher[RabbitMsg](producer)
 
   val listener = aSys.actorOf(Props(new Actor {

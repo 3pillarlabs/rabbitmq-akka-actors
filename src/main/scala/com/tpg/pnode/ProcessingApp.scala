@@ -38,6 +38,7 @@ object ProcessingApp extends App {
   Source(pub).runWith(Sink.foreach
     (msg => {
       println(s"sink-ed: $msg")
+      // TODO - requires knowledge of internals; map input to rule set
       passwordRule.setInput(msg.m)
       rulesEngine.fireRules
     })

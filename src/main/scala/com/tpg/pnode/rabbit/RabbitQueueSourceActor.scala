@@ -46,6 +46,8 @@ object RabbitQueueSource {
           rabbitMsgQueue = rabbitMsgQueue :+ rm
         else
           onNext(rm)
+          
+      // case _ => nope, fail fast
     }
 
 

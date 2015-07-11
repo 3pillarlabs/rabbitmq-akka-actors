@@ -32,13 +32,13 @@ object ProcessingApp extends App {
   RabbitConn.setUpRabbit(aSys, listener)
 
   val reSet = RuleSetBuilder.build
-  // TODO 'rules', 'rule priority', streams, 'vector clocks', err handling ? #experimental
+  // TODO 'rules' should be a set
   val (rulesEngine, passwordRule) = (reSet.getRulesEngine, reSet.getPasswordRule)
 
   Source(pub).runWith(Sink.foreach
     (msg => {
       println(s"sink-ed: $msg")
-      // TODO - requires knowledge of internals; map input to rule set
+      // TODO map() input to rule set
       passwordRule.setInput(msg.m)
       rulesEngine.fireRules
     })

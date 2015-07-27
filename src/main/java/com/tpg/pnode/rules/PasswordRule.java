@@ -2,7 +2,7 @@ package com.tpg.pnode.rules;
 
 import org.easyrules.core.BasicRule;
 
-public class PasswordRule extends BasicRule {
+public class PasswordRule extends BasicRule implements Rule {
 
     private String input;
 
@@ -25,9 +25,36 @@ public class PasswordRule extends BasicRule {
     }
 
 
-    public void setInput(String input) {
+    @Override
+    public void setInput(final String input) {
         this.input = input;
     }
 
+
+    @Override
+    public String getInput() {
+        return input;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        PasswordRule that = (PasswordRule) o;
+
+        return !(input != null ? !input.equals(that.input) : that.input != null);
+
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (input != null ? input.hashCode() : 0);
+        return result;
+    }
 
 }

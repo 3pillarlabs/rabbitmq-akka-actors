@@ -1,7 +1,6 @@
 package com.tpg.pnode.rules;
 
 import org.easyrules.api.RulesEngine;
-import org.easyrules.core.RulesEngineBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -18,10 +17,12 @@ public class RuleSetTest {
         new RuleSet(Mockito.mock(RulesEngine.class), null);
     }
 
+
     @Test(expected = IllegalArgumentException.class)
     public void cannotSetNullRuleEngine() {
         new RuleSet(null, new HashSet<>());
     }
+
 
     @Test
     public void testSetAllInputs() {
@@ -30,7 +31,8 @@ public class RuleSetTest {
         Rule r2 = Mockito.spy(Rule.class);
 
         Set<Rule> rules = new HashSet<>();
-        rules.add(r1); rules.add(r2);
+        rules.add(r1);
+        rules.add(r2);
 
         RuleSet ruleSet = new RuleSet(re, rules);
         ruleSet.setInput("test");

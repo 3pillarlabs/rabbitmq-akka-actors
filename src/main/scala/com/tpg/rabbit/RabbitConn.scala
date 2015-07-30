@@ -1,4 +1,4 @@
-package com.tpg.pnode.rabbit
+package com.tpg.rabbit
 
 import akka.actor.{ActorRef, ActorSystem}
 import com.github.sstone.amqp.Amqp.{AddQueue, QueueBind, QueueParameters}

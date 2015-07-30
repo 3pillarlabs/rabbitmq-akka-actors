@@ -7,7 +7,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.actor.AbstractActorPublisher;
 import akka.stream.javadsl.Source;
 import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
-import com.tpg.pnode.rabbit.RabbitConn;
+import com.tpg.rabbit.RabbitConn;
 import org.reactivestreams.Publisher;
 import scala.runtime.BoxedUnit;
 

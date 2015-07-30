@@ -5,9 +5,9 @@ import akka.stream.ActorMaterializer
 import akka.stream.actor.ActorPublisher
 import akka.stream.scaladsl.{Sink, Source}
 import com.github.sstone.amqp.Amqp.{Ack, Delivery}
-import com.tpg.pnode.rabbit.RabbitConn
 import com.tpg.pnode.rabbit.RabbitQueueSource.{RabbitMsg, RabbitQueueSourceActor}
 import com.tpg.pnode.rules.{PasswordRule, RuleSetBuilder}
+import com.tpg.rabbit.RabbitConn
 
 import scala.language.postfixOps
 
@@ -24,7 +24,11 @@ object ProcessingApp extends App {
     def receive = {
       case Delivery(consumerTag, envelope, properties, body) => {
         val msg = new String(body)
+
+        // tell the stseam publisher that there's a new message available
         producer ! RabbitMsg(msg)
+
+        // tell rabbit that we took care of the message
         sender ! Ack(envelope.getDeliveryTag)
       }
     }

@@ -8,7 +8,6 @@ import akka.stream.actor.AbstractActorPublisher;
 import akka.stream.javadsl.Source;
 import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
 import com.tpg.pnode.rules.PasswordRule;
-import com.tpg.pnode.rules.Rule;
 import com.tpg.pnode.rules.RuleSet;
 import com.tpg.pnode.rules.RuleSetBuilder;
 import com.tpg.rabbit.RabbitConn;
@@ -17,7 +16,6 @@ import org.reactivestreams.Publisher;
 import scala.runtime.BoxedUnit;
 
 import java.io.IOException;
-import java.util.Set;
 
 
 public class ProcessingApp {

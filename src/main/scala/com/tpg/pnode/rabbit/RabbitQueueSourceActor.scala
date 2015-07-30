@@ -47,7 +47,7 @@ object RabbitQueueSource {
         else
           onNext(rm)
           
-      // case _ => nope, fail fast
+      case o => println("Not handling message %s in rabbit source actor".format(o))
     }
 
 

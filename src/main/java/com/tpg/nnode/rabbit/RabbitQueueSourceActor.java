@@ -42,7 +42,10 @@ public class RabbitQueueSourceActor extends AbstractActorPublisher<RabbitQueueSo
                                 onNext(rabbitMsg);
                             }
                         }).
-                        matchAny(o -> System.out.println("nope")).build()
+                        matchAny(o -> {
+                                    System.out.println(String.format("Not handling message % in rabbit source actor", o));
+                                }
+                        ).build()
         );
     }
 

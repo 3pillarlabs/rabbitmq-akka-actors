@@ -22,11 +22,11 @@ public class ProcessingApp {
 
     public static void main(String[] args) throws IOException {
 
-        ActorSystem aSys = ActorSystem.create("aSys");
-        ActorMaterializer aMaterializer = ActorMaterializer.create(aSys);
+        final ActorSystem aSys = ActorSystem.create("aSys");
+        final ActorMaterializer aMaterializer = ActorMaterializer.create(aSys);
 
-        ActorRef producer = aSys.actorOf(Props.create(RabbitQueueSourceActor.class), "producer");
-        Publisher<RabbitQueueSourceActor.RabbitMsg> pub = AbstractActorPublisher.create(producer);
+        final ActorRef producer = aSys.actorOf(Props.create(RabbitQueueSourceActor.class), "producer");
+        final Publisher<RabbitQueueSourceActor.RabbitMsg> pub = AbstractActorPublisher.create(producer);
 
         final ActorRef listener = aSys.actorOf(Props.create(ListenerActor.class, () -> new ListenerActor(producer)),
                 "listener");
@@ -38,9 +38,8 @@ public class ProcessingApp {
         final Source<RabbitQueueSourceActor.RabbitMsg, BoxedUnit> rabbitMessagesSrc = Source.from(pub);
         rabbitMessagesSrc.runForeach(
                 m -> {
-                    final String rm = m.getMsg();
-                    System.out.println(String.format("Sink-ed: %s", rm));
-                    reSet.setInput(rm);
+                    System.out.println(String.format("Sink-ed: %s", m));
+                    reSet.setInput(m.getMsg());
                     rulesEngine.fireRules();
                 },
                 aMaterializer);

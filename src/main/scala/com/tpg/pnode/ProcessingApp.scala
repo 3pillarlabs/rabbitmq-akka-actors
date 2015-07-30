@@ -31,6 +31,7 @@ object ProcessingApp extends App {
         // tell rabbit that we took care of the message
         sender ! Ack(envelope.getDeliveryTag)
       }
+      case o => println("Not handling %s message in rabbit listener actor".format(o))
     }
   }))
   RabbitConn.setUpRabbit(aSys, listener)

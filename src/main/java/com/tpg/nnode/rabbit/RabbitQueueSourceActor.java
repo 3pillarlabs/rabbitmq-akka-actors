@@ -43,7 +43,7 @@ public class RabbitQueueSourceActor extends AbstractActorPublisher<RabbitQueueSo
                             }
                         }).
                         matchAny(o -> {
-                                    System.out.println(String.format("Not handling message % in rabbit source actor", o));
+                                    System.out.println(String.format("Not handling message %s in rabbit source actor", o));
                                 }
                         ).build()
         );
@@ -54,7 +54,7 @@ public class RabbitQueueSourceActor extends AbstractActorPublisher<RabbitQueueSo
         private final String msg;
 
 
-        public RabbitMsg(String msg) {
+        public RabbitMsg(final String msg) {
             this.msg = msg;
         }
 
@@ -63,5 +63,30 @@ public class RabbitQueueSourceActor extends AbstractActorPublisher<RabbitQueueSo
             return msg;
         }
 
+
+        @Override
+        public String toString() {
+            return "RabbitMsg{" +
+                    "msg='" + msg + '\'' +
+                    '}';
+        }
+
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            RabbitMsg rabbitMsg = (RabbitMsg) o;
+
+            return !(msg != null ? !msg.equals(rabbitMsg.msg) : rabbitMsg.msg != null);
+
+        }
+
+
+        @Override
+        public int hashCode() {
+            return msg != null ? msg.hashCode() : 0;
+        }
     }
 }

@@ -12,7 +12,7 @@ import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
  */
 class ListenerActor extends AbstractActor {
 
-    public ListenerActor(ActorRef producer) {
+    public ListenerActor(final ActorRef producer) {
         receive(ReceiveBuilder.
                         match(Amqp.Delivery.class, d -> {
                             String msg = new String(d.body());

@@ -36,7 +36,7 @@ object ProcessingApp extends App {
   RabbitConn.setUpRabbit(aSys, listener)
 
   val reSet = (new RuleSetBuilder).add(new PasswordRule).build()
-  val (rulesEngine, rules) = (reSet.getRulesEngine, reSet.getRules)
+  val rulesEngine = reSet.getRulesEngine
 
   Source(pub).runWith(Sink.foreach
     (msg => {

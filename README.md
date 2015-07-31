@@ -8,6 +8,6 @@ Each node can scale by making use of akka streams. The message broker provides c
 
 # About rabbitmq-akka-actors
 
-This Activator template is maintained by ![3Pillar Global] (http://www.3pillarglobal.com/wp-content/themes/base/library/images/logo_3pg.png).
+![3Pillar Global] (http://www.3pillarglobal.com/wp-content/themes/base/library/images/logo_3pg.png)
 
-For more information visit [http://www.3pillarglobal.com/].
+This Activator template is maintained by [http://www.3pillarglobal.com/].

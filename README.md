@@ -10,4 +10,4 @@ Each node can scale by making use of akka streams. The message broker provides c
 
 ![3Pillar Global] (http://www.3pillarglobal.com/wp-content/themes/base/library/images/logo_3pg.png)
 
-This Activator template is maintained by [http://www.3pillarglobal.com/].
+This Activator template is maintained by [3Pillar Global](http://www.3pillarglobal.com/).

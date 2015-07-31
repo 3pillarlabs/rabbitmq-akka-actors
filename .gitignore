@@ -10,3 +10,6 @@ target/
 
 #sbt specific files
 .sbtserver
+
+.DS_Store
+

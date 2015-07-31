@@ -6,7 +6,7 @@ The template should be useful in building systems for batch processing that are 
 
 Each node can scale by making use of akka streams. The message broker provides connectivity between the nodes and allows to keep the business logic for each node to a minimum - thus paving the way for the system to adhere to the SOC principle.
 
-# About rabbitmq-akka-actors
+# About this project
 
 ![3Pillar Global] (http://www.3pillarglobal.com/wp-content/themes/base/library/images/logo_3pg.png)
 

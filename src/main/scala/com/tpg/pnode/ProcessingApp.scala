@@ -20,20 +20,7 @@ object ProcessingApp extends App {
   val producer = aSys.actorOf(Props[RabbitQueueSourceActor])
   val pub = ActorPublisher[RabbitMsg](producer)
 
-  val listener = aSys.actorOf(Props(new Actor {
-    def receive = {
-      case Delivery(consumerTag, envelope, properties, body) => {
-        val msg = new String(body)
-
-        // tell the stseam publisher that there's a new message available
-        producer ! RabbitMsg(msg)
-
-        // tell rabbit that we took care of the message
-        sender ! Ack(envelope.getDeliveryTag)
-      }
-      case o => println("Not handling %s message in rabbit listener actor".format(o))
-    }
-  }))
+  val listener = aSys.actorOf(Props(new ListenerActor(producer)))
   RabbitConn.setUpRabbit(aSys, listener)
 
   val reSet = (new RuleSetBuilder).add(new PasswordRule).build()

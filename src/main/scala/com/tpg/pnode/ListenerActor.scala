@@ -6,6 +6,7 @@ import com.tpg.pnode.rabbit.RabbitQueueSource.RabbitMsg
 
 /**
  * Actor binding rabbit to a stream publisher actor
+ * @param producer an actor that we will forward the messages to - the actor that will act as the 'Source' of the stream
  */
 class ListenerActor(producer: ActorRef) extends Actor {
 

@@ -12,6 +12,10 @@ import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
  */
 class ListenerActor extends AbstractActor {
 
+    /**
+     *
+     * @param producer an actor that we will forward the messages to - the actor that will act as the 'Source' of the stream
+     */
     public ListenerActor(final ActorRef producer) {
         receive(ReceiveBuilder.
                         match(Amqp.Delivery.class, d -> {

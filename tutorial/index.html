@@ -1,8 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>
+        RabbitMQ, Actors, Streams and Message Processing Rules - An Activator Seed Template
+    </title>
+</head>
 <body>
     <div>
         <h2>Overview</h2>
-        <p>This is a seed template which exposes the building blocks for a distributed system in which components communicate via a message broker (rabbitmq) and process messages using akka streams. A very simple rule engine is included - it plays a role in deciding the next steps after messages are processed. The implementation is provided in both scala and java.</p>
-        <p>The template should be useful in building systems for batch processing that are designed around a workflow where information has to be passed around all the nodes so that each can augment it with specifics.</p>
-        <p>Each node can scale by making use of akka streams. The message broker provides connectivity between the nodes and allows to keep the business logic for each node to a minimum - thus paving the way for the system to adhere to the SOC principle.</p>
+        <p>This is a seed template which exposes the building blocks for a distributed system in which components communicate
+            via a message broker (rabbitmq) and process messages using akka streams.
+            A very simple rule engine is included - it plays a role in deciding the next steps after messages are processed.
+            The implementation is provided in both scala and java.
+        </p>
+        <p>The template should be useful in building systems for batch processing that are designed around a workflow where
+            information has to be passed around all the nodes so that each can augment it with specifics.
+        </p>
+        <p>Each node can scale by making use of akka streams. The message broker provides connectivity between the nodes and
+            allows to keep the business logic for each node to a minimum - thus paving the way for the system to adhere to
+            the SOC principle.
+        </p>
+    </div>
+    <div>
+        <h2>Goals</h2>
+        <p>
+            We'll connect to a RabbitMQ server by using a <a href="https://github.com/sstone/amqp-client">Scala AMQP client</a>.
+        </p>
+        <p>
+            We'll forward messages we receive on a queue to an actor that acts as an Akka Streams Source for our messages.
+        </p>
+        <p>
+            We process the messages with Akka Streams by passing the messages through a set of <a href="http://www.easyrules.org/">rules</a>.
+        </p>
+    </div>
+    <div>
+        <h2>Prerequisites</h2>
+        <p>
+            You'll have to <a href="https://www.rabbitmq.com/download.html">set up</a> RabbitMQ server.
+            Also, install the <a href="https://www.rabbitmq.com/management.html">management plugin</a>.
+        </p>
+        <p>
+            Create a <code>rabbitmq-akka-actors</code> persistent queue.
+        </p>
+        <p>
+            Configure the connection to the RabbitMQ service by editing the <a href="#code/src/main/resources/application.conf">configuration file</a>.
+        </p>
+    </div>
+    <div>
+        <h2>Connecting to RabbitMQ</h2>
+        <p>
+            The <a href="https://github.com/sstone/amqp-client">AMPQ client library</a> we're using models message handlers as Akka actors.
+            The messages we get from a RabbitMQ queue will be handled by an Akka actor.
+        </p>
+        <p>
+            We connect to the RabbitMQ server using the <code>setUpRabbit</code> method of the <a href="#code/src/main/scala/com/tpg/rabbit/RabbitConn.scala">RabbitConn</a>
+            object.
+        </p>
+        <p>
+            The <code>handler</code> parameter is the actor that will handle the messages we receive.
+            For the Scala version, this handler is implemented in the <a href="#code/src/main/scala/com/tpg/pnode/ListenerActor.scala">ListenerActor.scala</a> file.
+            For the Java version, in the <a href="#code/src/main/java/com/tpg/nnode/ListenerActor.java">ListenerActor.java</a> file.
+        </p>
+    </div>
+    <div>
+        <h2>Building a stream source</h2>
+        <p>
+            We create a stream source from the messages we receive from RabbitMQ. This source is an actor that will receive two kind of messages - from
+            a RabbitMQ queue but also from the stream.
+            The messages we receive from the stream system are requests to provide more elements for processing.
+            Thus in this actor we have to build a buffering mechanism that will balance the amount of RabbitMQ messages and the requests for more elements we have from the stream.
+        </p>
+        <p>
+            The Scala implementation for this actor is in the <a href="#code/src/main/scala/com/tpg/pnode/rabbit/RabbitQueueSourceActor.scala">RabbitQueueSourceActor.scala</a> file.
+            For the Java version see <a href="#code/src/main/java/com/tpg/nnode/rabbit/RabbitQueueSourceActor.java">RabbitQueueSourceActor.java</a>
+        </p>
+    </div>
+    <div>
+        <h2>Message processing rules</h2>
+        <p>
+            This seed template makes use of the <a href="http://www.easyrules.org/">Easy Rules</a> library to illustrate message processing.
+        </p>
+        <p>
+            The rules are set up in the <a href="#code/src/main/java/com/tpg/pnode/rules/package-info.java">rules package</a>.
+        </p>
+    </div>
+    <div>
+        <h2>Putting it all together</h2>
+        <p>
+            The <a href="#code/src/main/scala/com/tpg/pnode/ProcessingApp.scala">ProcessingApp.scala</a> and
+            <a href="#code/src/main/java/com/tpg/nnode/ProcessingApp.java">ProcessingApp.java</a> contain the entry point
+            in our small application.
+        </p>
+        <p>
+            We connect to the RabbitMQ server, instantiate our RabbitMQ and stream source actors;
+            we build the set of rules to process our messages. In the final step, we process the akka stream we set up.
+        </p>
+    </div>
+    <div>
+        <h2>Testing</h2>
+        <p>
+            Run <a href="#code/src/main/scala/com/tpg/pnode/ProcessingApp.scala">ProcessingApp.scala</a> or
+            <a href="#code/src/main/java/com/tpg/nnode/ProcessingApp.java">ProcessingApp.java</a>
+        </p>
+        <p>
+            Go to RabbitMQ's management <a href="http://localhost:15672/#/queues/%2F/rabbitmq-akka-actors">console page for the queue</a> you created
+            and start posting messages. The application should show signs of activity by printing information on the screen.
+            A <code>peek-a-boo</code> message should trigger the <a href="#code/src/main/java/com/tpg/pnode/rules/PasswordRule.java">password rule</a>.
+        </p>
     </div>
 </body>
+</html>

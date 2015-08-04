@@ -44,8 +44,5 @@ public class ProcessingApp {
                 },
                 aMaterializer);
 
-        System.in.read();
-        aSys.shutdown();
-
     }
 }

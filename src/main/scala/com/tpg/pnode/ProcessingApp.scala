@@ -34,8 +34,4 @@ object ProcessingApp extends App {
     })
   )
 
-  println("press enter to shut down the system...")
-  System.in.read()
-  aSys.shutdown()
-
 }

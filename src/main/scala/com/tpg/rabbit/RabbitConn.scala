@@ -14,6 +14,7 @@ object RabbitConn {
 
   val config = ConfigFactory.load()
   val rabbitUri = config.getConfig("rabbit").getString("uri")
+  val queueName = config.getConfig("rabbit").getString("queue")
 
   /**
    * sets up an actor to handle a connection to a rabbit queue
@@ -29,8 +30,8 @@ object RabbitConn {
     val consumer = ConnectionOwner.createChildActor(conn, Consumer.props(handler, channelParams = None, autoack = false))
     Amqp.waitForConnection(system, consumer).await()
 
-    consumer ! QueueBind(queue = "rabbitmq-akka-actors", exchange = "amq.direct", routing_key = "mkey")
-    consumer ! AddQueue(QueueParameters(name = "rabbitmq-akka-actors", passive = false, durable = true, autodelete = false))
+    consumer ! QueueBind(queue = queueName, exchange = "amq.direct", routing_key = "mkey")
+    consumer ! AddQueue(QueueParameters(name = queueName, passive = false, durable = true, autodelete = false))
   }
 
 }

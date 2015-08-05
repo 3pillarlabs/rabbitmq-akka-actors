@@ -1,4 +1,4 @@
-package com.tpg.nnode.rabbit;
+package com.tpg.java.rabbithandler;
 
 import akka.japi.pf.ReceiveBuilder;
 import akka.stream.actor.AbstractActorPublisher;

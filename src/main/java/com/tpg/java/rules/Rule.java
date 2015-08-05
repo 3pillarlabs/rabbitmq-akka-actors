@@ -1,4 +1,4 @@
-package com.tpg.pnode.rules;
+package com.tpg.java.rules;
 
 /**
  * Represents a rule in our system

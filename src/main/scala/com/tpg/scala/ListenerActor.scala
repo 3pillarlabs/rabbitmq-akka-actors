@@ -1,8 +1,8 @@
-package com.tpg.pnode
+package com.tpg.scala
 
 import akka.actor.{ActorRef, Actor}
 import com.github.sstone.amqp.Amqp.{Ack, Delivery}
-import com.tpg.pnode.rabbit.RabbitQueueSource.RabbitMsg
+import com.tpg.scala.rabbithandler.RabbitQueueSource.RabbitMsg
 
 /**
  * Actor binding rabbit to a stream publisher actor

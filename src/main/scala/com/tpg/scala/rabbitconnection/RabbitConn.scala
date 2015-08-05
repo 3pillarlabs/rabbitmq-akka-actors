@@ -1,10 +1,10 @@
-package com.tpg.rabbit
+package com.tpg.scala.rabbitconnection
 
 import akka.actor.{ActorRef, ActorSystem}
 import com.github.sstone.amqp.Amqp.{AddQueue, QueueBind, QueueParameters}
 import com.github.sstone.amqp.{Amqp, ConnectionOwner, Consumer}
 import com.rabbitmq.client.ConnectionFactory
-import com.tpg.pnode.Config.RabbitConfig
+import com.tpg.scala.Config.RabbitConfig
 
 import scala.concurrent.duration._
 import scala.language.postfixOps

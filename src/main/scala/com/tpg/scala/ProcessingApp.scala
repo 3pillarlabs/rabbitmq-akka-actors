@@ -1,13 +1,14 @@
-package com.tpg.pnode
+package com.tpg.scala
 
 import akka.actor.{Actor, ActorSystem, Props}
 import akka.stream.ActorMaterializer
 import akka.stream.actor.ActorPublisher
 import akka.stream.scaladsl.{Sink, Source}
 import com.github.sstone.amqp.Amqp.{Ack, Delivery}
-import com.tpg.pnode.rabbit.RabbitQueueSource.{RabbitMsg, RabbitQueueSourceActor}
-import com.tpg.pnode.rules.{PasswordRule, RuleSetBuilder}
-import com.tpg.rabbit.RabbitConn
+import com.tpg.java.rules.{PasswordRule, RuleSetBuilder}
+import com.tpg.scala.rabbithandler.RabbitQueueSource.{RabbitMsg, RabbitQueueSourceActor}
+import com.tpg.java.rules.PasswordRule
+import com.tpg.scala.rabbitconnection.RabbitConn
 
 import scala.language.postfixOps
 

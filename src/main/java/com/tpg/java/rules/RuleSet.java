@@ -1,4 +1,4 @@
-package com.tpg.pnode.rules;
+package com.tpg.java.rules;
 
 
 import com.google.common.base.Preconditions;

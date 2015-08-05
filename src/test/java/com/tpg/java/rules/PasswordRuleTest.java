@@ -1,4 +1,4 @@
-package com.tpg.pnode.rules;
+package com.tpg.java.rules;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Tests for {@link com.tpg.pnode.rules.PasswordRule}
+ * Tests for {@link PasswordRule}
  */
 public class PasswordRuleTest {
 

@@ -1,4 +1,4 @@
-package com.tpg.nnode;
+package com.tpg.java;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -6,11 +6,11 @@ import akka.actor.Props;
 import akka.stream.ActorMaterializer;
 import akka.stream.actor.AbstractActorPublisher;
 import akka.stream.javadsl.Source;
-import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
-import com.tpg.pnode.rules.PasswordRule;
-import com.tpg.pnode.rules.RuleSet;
-import com.tpg.pnode.rules.RuleSetBuilder;
-import com.tpg.rabbit.RabbitConn;
+import com.tpg.java.rabbithandler.RabbitQueueSourceActor;
+import com.tpg.java.rules.PasswordRule;
+import com.tpg.java.rules.RuleSet;
+import com.tpg.java.rules.RuleSetBuilder;
+import com.tpg.scala.rabbitconnection.RabbitConn;
 import org.easyrules.api.RulesEngine;
 import org.reactivestreams.Publisher;
 import scala.runtime.BoxedUnit;

@@ -1,4 +1,4 @@
-package com.tpg.pnode.rabbit
+package com.tpg.scala.rabbithandler
 
 import akka.actor.Actor
 import akka.stream.actor.{ActorPublisher, ActorPublisherMessage}
@@ -13,7 +13,7 @@ object RabbitQueueSource {
 
 
   /**
-   * we send this to [[com.tpg.pnode.rabbit.RabbitQueueSource.RabbitQueueSourceActor]] to get its queue size back
+   * we send this to [[com.tpg.scala.rabbithandler.RabbitQueueSource.RabbitQueueSourceActor]] to get its queue size back
    */
   case object GetQueueSize
 

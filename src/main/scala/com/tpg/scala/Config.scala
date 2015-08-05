@@ -1,4 +1,4 @@
-package com.tpg.pnode
+package com.tpg.scala
 
 import com.typesafe.config.ConfigFactory
 

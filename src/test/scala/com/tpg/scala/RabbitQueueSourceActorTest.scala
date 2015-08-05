@@ -1,4 +1,4 @@
-package com.tpg.pnode
+package com.tpg.scala
 
 import akka.actor.{ActorSystem, Props}
 import akka.stream.ActorMaterializer
@@ -6,7 +6,7 @@ import akka.stream.actor.ActorPublisher
 import akka.stream.actor.ActorPublisherMessage.Request
 import akka.stream.scaladsl.{Sink, Source}
 import akka.testkit._
-import com.tpg.pnode.rabbit.RabbitQueueSource.{GetQueueSize, RabbitMsg, RabbitQueueSourceActor}
+import com.tpg.scala.rabbithandler.RabbitQueueSource.{GetQueueSize, RabbitMsg, RabbitQueueSourceActor}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 
 

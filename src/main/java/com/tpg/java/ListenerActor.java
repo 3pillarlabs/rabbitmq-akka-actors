@@ -1,10 +1,10 @@
-package com.tpg.nnode;
+package com.tpg.java;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
 import com.github.sstone.amqp.Amqp;
-import com.tpg.nnode.rabbit.RabbitQueueSourceActor;
+import com.tpg.java.rabbithandler.RabbitQueueSourceActor;
 
 
 /**

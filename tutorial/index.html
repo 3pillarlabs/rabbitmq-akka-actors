@@ -53,13 +53,13 @@
             The messages we get from a RabbitMQ queue will be handled by an Akka actor.
         </p>
         <p>
-            We connect to the RabbitMQ server using the <code>setUpRabbit</code> method of the <a href="#code/src/main/scala/com/tpg/rabbit/RabbitConn.scala">RabbitConn</a>
+            We connect to the RabbitMQ server using the <code>setUpRabbit</code> method of the <a href="#code/src/main/scala/com/tpg/scala/rabbitconnection/RabbitConn.scala">RabbitConn</a>
             object.
         </p>
         <p>
             The <code>handler</code> parameter is the actor that will handle the messages we receive.
-            For the Scala version, this handler is implemented in the <a href="#code/src/main/scala/com/tpg/pnode/ListenerActor.scala">ListenerActor.scala</a> file.
-            For the Java version, in the <a href="#code/src/main/java/com/tpg/nnode/ListenerActor.java">ListenerActor.java</a> file.
+            For the Scala version, this handler is implemented in the <a href="#code/src/main/scala/com/tpg/scala/ListenerActor.scala">ListenerActor.scala</a> file.
+            For the Java version, in the <a href="#code/src/main/java/com/tpg/java/ListenerActor.java">ListenerActor.java</a> file.
         </p>
     </div>
     <div>
@@ -71,8 +71,8 @@
             Thus in this actor we have to build a buffering mechanism that will balance the amount of RabbitMQ messages and the requests for more elements we have from the stream.
         </p>
         <p>
-            The Scala implementation for this actor is in the <a href="#code/src/main/scala/com/tpg/pnode/rabbit/RabbitQueueSourceActor.scala">RabbitQueueSourceActor.scala</a> file.
-            For the Java version see <a href="#code/src/main/java/com/tpg/nnode/rabbit/RabbitQueueSourceActor.java">RabbitQueueSourceActor.java</a>
+            The Scala implementation for this actor is in the <a href="#code/src/main/scala/com/tpg/scala/rabbithandler/RabbitQueueSourceActor.scala">RabbitQueueSourceActor.scala</a> file.
+            For the Java version see <a href="#code/src/main/java/com/tpg/java/rabbithandler/RabbitQueueSourceActor.java">RabbitQueueSourceActor.java</a>
         </p>
     </div>
     <div>
@@ -81,14 +81,14 @@
             This seed template makes use of the <a href="http://www.easyrules.org/">Easy Rules</a> library to illustrate message processing.
         </p>
         <p>
-            The rules are set up in the <a href="#code/src/main/java/com/tpg/pnode/rules/package-info.java">rules package</a>.
+            The rules are set up in the <a href="#code/src/main/java/com/tpg/java/rules/package-info.java">rules package</a>.
         </p>
     </div>
     <div>
         <h2>Putting it all together</h2>
         <p>
-            The <a href="#code/src/main/scala/com/tpg/pnode/ProcessingApp.scala">ProcessingApp.scala</a> and
-            <a href="#code/src/main/java/com/tpg/nnode/ProcessingApp.java">ProcessingApp.java</a> contain the entry point
+            The <a href="#code/src/main/scala/com/tpg/scala/ProcessingApp.scala">ProcessingApp.scala</a> and
+            <a href="#code/src/main/java/com/tpg/java/ProcessingApp.java">ProcessingApp.java</a> contain the entry point
             in our small application.
         </p>
         <p>
@@ -99,13 +99,13 @@
     <div>
         <h2>Testing</h2>
         <p>
-            Run <a href="#code/src/main/scala/com/tpg/pnode/ProcessingApp.scala">ProcessingApp.scala</a> or
-            <a href="#code/src/main/java/com/tpg/nnode/ProcessingApp.java">ProcessingApp.java</a>
+            Run <a href="#code/src/main/scala/com/tpg/scala/ProcessingApp.scala">ProcessingApp.scala</a> or
+            <a href="#code/src/main/java/com/tpg/java/ProcessingApp.java">ProcessingApp.java</a>
         </p>
         <p>
             Go to RabbitMQ's management <a href="http://localhost:15672/#/queues/%2F/rabbitmq-akka-actors">console page for the queue</a> you created
             and start posting messages. The application should show signs of activity by printing information on the screen.
-            A <code>peek-a-boo</code> message should trigger the <a href="#code/src/main/java/com/tpg/pnode/rules/PasswordRule.java">password rule</a>.
+            A <code>peek-a-boo</code> message should trigger the <a href="#code/src/main/java/com/tpg/java/rules/PasswordRule.java">password rule</a>.
         </p>
     </div>
 </body>

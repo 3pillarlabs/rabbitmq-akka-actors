@@ -13,3 +13,6 @@ target/
 
 .DS_Store
 
+project/.sbtserver.lock
+project/sbt-ui.sbt
+

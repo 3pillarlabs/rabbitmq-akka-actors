@@ -4,17 +4,13 @@ import akka.actor.{ActorRef, ActorSystem}
 import com.github.sstone.amqp.Amqp.{AddQueue, QueueBind, QueueParameters}
 import com.github.sstone.amqp.{Amqp, ConnectionOwner, Consumer}
 import com.rabbitmq.client.ConnectionFactory
-import com.typesafe.config.ConfigFactory
+import com.tpg.pnode.Config.RabbitConfig
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
 
 /** functionality to connect to RabbitMQ */
-object RabbitConn {
-
-  val config = ConfigFactory.load()
-  val rabbitUri = config.getConfig("rabbit").getString("uri")
-  val queueName = config.getConfig("rabbit").getString("queue")
+object RabbitConn extends RabbitConfig {
 
   /**
    * sets up an actor to handle a connection to a rabbit queue
